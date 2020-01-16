@@ -66,6 +66,8 @@ public class AssemblyApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private com.squareup.okhttp.Call postAssembleDocumentCall(PostAssembleDocumentRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getSaveOptions();
+
         // create path and map variables
         String localVarPath = "/assembly/{name}/build"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getName().toString()));
@@ -78,8 +80,6 @@ public class AssemblyApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-
-        localVarFormParams.put("SaveOptions", new JSON().serialize(request.getSaveOptions()));
         if (request.getData() != null)
           localVarFormParams.put("Data", request.getData());
 
@@ -108,7 +108,7 @@ public class AssemblyApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
@@ -138,6 +138,7 @@ public class AssemblyApi {
     /**
      * Builds a document using document template and XML or JSON data passed in request
      * 
+     * @param request Request object
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -159,6 +160,7 @@ public class AssemblyApi {
     /**
      * Builds a document using document template and XML or JSON data passed in request
      * 
+     * @param request Request object
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -171,6 +173,7 @@ public class AssemblyApi {
     /**
      * Builds a document using document template and XML or JSON data passed in request (asynchronously)
      * 
+     * @param request Request object
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -198,163 +201,6 @@ public class AssemblyApi {
 
         com.squareup.okhttp.Call call = postAssembleDocumentValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-
-      /**
-     * Build call for putCreate
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext (required)
-     * @param file File to upload (required)
-     * @param versionId Source file&#39;s version (optional)
-     * @param storage User&#39;s storage name (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    private com.squareup.okhttp.Call putCreateCall(String path, File file, String versionId, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = file;
-
-        // create path and map variables
-        String localVarPath = "/storage/file";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (path != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("path", path));
-        if (versionId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("versionId", versionId));
-        if (storage != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("storage", storage));
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call putCreateValidateBeforeCall(String path, File file, String versionId, String storage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'path' is set
-        if (path == null) {
-            throw new ApiException("Missing the required parameter 'path' when calling putCreate(Async)");
-        }
-        
-        // verify the required parameter 'file' is set
-        if (file == null) {
-            throw new ApiException("Missing the required parameter 'file' when calling putCreate(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = putCreateCall(path, file, versionId, storage, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * Upload a specific file 
-     * 
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext (required)
-     * @param file File to upload (required)
-     * @param versionId Source file&#39;s version (optional)
-     * @param storage User&#39;s storage name (optional)
-     * @return ApiResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse putCreate(String path, File file, String versionId, String storage) throws ApiException {
-        try {
-            ApiResponse<ApiResponse> resp = putCreateWithHttpInfo(path, file, versionId, storage);
-            return resp.getData();
-        }
-        catch (ApiException ex) {
-            if (ex.getCode() == NotAuth) {
-                apiClient.refreshToken();
-                ApiResponse<ApiResponse> resp = putCreateWithHttpInfo(path, file, versionId, storage);
-                return resp.getData();
-            }
-            throw ex;
-        }
-    }
-
-    /**
-     * Upload a specific file 
-     * 
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext (required)
-     * @param file File to upload (required)
-     * @param versionId Source file&#39;s version (optional)
-     * @param storage User&#39;s storage name (optional)
-     * @return ApiResponse&lt;ApiResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    private ApiResponse<ApiResponse> putCreateWithHttpInfo(String path, File file, String versionId, String storage) throws ApiException {
-        com.squareup.okhttp.Call call = putCreateValidateBeforeCall(path, file, versionId, storage, null, null);
-        Type localVarReturnType = new TypeToken<ApiResponse>() { }.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Upload a specific file  (asynchronously)
-     * 
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext (required)
-     * @param file File to upload (required)
-     * @param versionId Source file&#39;s version (optional)
-     * @param storage User&#39;s storage name (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call putCreateAsync(String path, File file, String versionId, String storage, final ApiCallback<ApiResponse> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = putCreateValidateBeforeCall(path, file, versionId, storage, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ApiResponse>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

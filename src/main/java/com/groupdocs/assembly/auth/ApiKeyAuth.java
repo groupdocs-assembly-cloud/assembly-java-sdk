@@ -77,12 +77,14 @@ public class ApiKeyAuth implements Authentication {
     String value;
     if (apiKeyPrefix != null) {
       value = apiKeyPrefix + " " + apiKey;
-    } else {
+    } 
+    else {
       value = apiKey;
     }
     if ("query".equals(location)) {
       queryParams.add(new Pair(paramName, value));
-    } else if ("header".equals(location)) {
+    } 
+    else if ("header".equals(location)) {
       headerParams.put(paramName, value);
     }
   }
