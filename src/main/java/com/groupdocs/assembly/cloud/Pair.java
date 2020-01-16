@@ -25,49 +25,42 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
+package com.groupdocs.assembly.cloud;
 
-import java.util.List;
-import java.util.Map;
 
-/**
- * API response returned by API call.
- *
- * @param <T> The type of data that is deserialized from response body
- */
-public class ApiResponse<T> {
-    final private int statusCode;
-    final private Map<String, List<String>> headers;
-    final private T data;
+public class Pair {
+    private String name = "";
+    private String value = "";
 
-    /**
-     * @param statusCode The status code of HTTP response
-     * @param headers The headers of HTTP response
-     */
-    public ApiResponse(int statusCode, Map<String, List<String>> headers) {
-        this(statusCode, headers, null);
+    public Pair (String name, String value) {
+        setName(name);
+        setValue(value);
     }
 
-    /**
-     * @param statusCode The status code of HTTP response
-     * @param headers The headers of HTTP response
-     * @param data The object deserialized from response bod
-     */
-    public ApiResponse(int statusCode, Map<String, List<String>> headers, T data) {
-        this.statusCode = statusCode;
-        this.headers = headers;
-        this.data = data;
+    private void setName(String name) {
+        if (!isValidString(name)) return;
+
+        this.name = name;
     }
 
-    public int getStatusCode() {
-        return statusCode;
+    private void setValue(String value) {
+        if (!isValidString(value)) return;
+
+        this.value = value;
     }
 
-    public Map<String, List<String>> getHeaders() {
-        return headers;
+    public String getName() {
+        return this.name;
     }
 
-    public T getData() {
-        return data;
+    public String getValue() {
+        return this.value;
+    }
+
+    private boolean isValidString(String arg) {
+        if (arg == null) return false;
+        if (arg.trim().isEmpty()) return false;
+
+        return true;
     }
 }

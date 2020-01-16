@@ -16,8 +16,8 @@ Builds a document using document template and XML or JSON data passed in request
 ### Example
 ```java
 // Import classes:
-//import com.groupdocs.assembly.ApiException;
-//import com.groupdocs.assembly.api.AssemblyApi;
+//import com.groupdocs.assembly.cloud.ApiException;
+//import com.groupdocs.assembly.cloud.api.AssemblyApi;
 
 
 AssemblyApi apiInstance = new AssemblyApi();

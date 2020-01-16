@@ -25,67 +25,66 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
+package com.groupdocs.assembly.cloud;
 
 import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
 
 import okio.Buffer;
-import okio.BufferedSink;
-import okio.ForwardingSink;
+import okio.BufferedSource;
+import okio.ForwardingSource;
 import okio.Okio;
-import okio.Sink;
+import okio.Source;
 
-public class ProgressRequestBody extends RequestBody {
+public class ProgressResponseBody extends ResponseBody {
 
-    public interface ProgressRequestListener {
-        void onRequestProgress(long bytesWritten, long contentLength, boolean done);
+    public interface ProgressListener {
+        void update(long bytesRead, long contentLength, boolean done);
     }
 
-    private final RequestBody requestBody;
+    private final ResponseBody responseBody;
+    private final ProgressListener progressListener;
+    private BufferedSource bufferedSource;
 
-    private final ProgressRequestListener progressListener;
-
-    public ProgressRequestBody(RequestBody requestBody, ProgressRequestListener progressListener) {
-        this.requestBody = requestBody;
+    public ProgressResponseBody(ResponseBody responseBody, ProgressListener progressListener) {
+        this.responseBody = responseBody;
         this.progressListener = progressListener;
     }
 
     @Override
     public MediaType contentType() {
-        return requestBody.contentType();
+        return responseBody.contentType();
     }
 
     @Override
     public long contentLength() throws IOException {
-        return requestBody.contentLength();
+        return responseBody.contentLength();
     }
 
     @Override
-    public void writeTo(BufferedSink sink) throws IOException {
-        BufferedSink bufferedSink = Okio.buffer(sink(sink));
-        requestBody.writeTo(bufferedSink);
-        bufferedSink.flush();
+    public BufferedSource source() throws IOException {
+        if (bufferedSource == null) {
+            bufferedSource = Okio.buffer(source(responseBody.source()));
+        }
+        return bufferedSource;
     }
 
-    private Sink sink(Sink sink) {
-        return new ForwardingSink(sink) {
-
-            long bytesWritten = 0L;
-            long contentLength = 0L;
+    private Source source(Source source) {
+        return new ForwardingSource(source) {
+            long totalBytesRead = 0L;
 
             @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                if (contentLength == 0) {
-                    contentLength = contentLength();
-                }
-
-                bytesWritten += byteCount;
-                progressListener.onRequestProgress(bytesWritten, contentLength, bytesWritten == contentLength);
+            public long read(Buffer sink, long byteCount) throws IOException {
+                long bytesRead = super.read(sink, byteCount);
+                // read() returns the number of bytes read, or -1 if this source is exhausted.
+                totalBytesRead += bytesRead != -1 ? bytesRead : 0;
+                progressListener.update(totalBytesRead, responseBody.contentLength(), bytesRead == -1);
+                return bytesRead;
             }
         };
     }
 }
+
+

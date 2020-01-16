@@ -25,7 +25,7 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
+package com.groupdocs.assembly.cloud;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

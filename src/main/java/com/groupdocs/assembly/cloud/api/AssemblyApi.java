@@ -25,11 +25,11 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly.api;
+package com.groupdocs.assembly.cloud.api;
 
-import com.groupdocs.assembly.*;
-import com.groupdocs.assembly.model.*;
-import com.groupdocs.assembly.model.requests.*;
+import com.groupdocs.assembly.cloud.*;
+import com.groupdocs.assembly.cloud.model.*;
+import com.groupdocs.assembly.cloud.model.requests.*;
 import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.File;

@@ -10,10 +10,10 @@
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *
+ * 
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *
+ * 
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,28 +25,19 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
-import com.groupdocs.assembly.api.AssemblyApi;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.nio.file.Paths;
+package com.groupdocs.assembly.cloud.auth;
+
+import com.groupdocs.assembly.cloud.Pair;
+
 import java.util.Map;
+import java.util.List;
 
-public final class TestInitializer {
-    public static AssemblyApi assemblyApi;
-    public static String LocalTestFolder = "TestData";
-
-
-    public static void Initialize() throws FileNotFoundException, ApiException {
-        Map<String, String> creds = new Gson().fromJson(new JsonReader(new FileReader("Settings/servercreds.json")), Map.class);
-        if (creds == null) {
-            throw new FileNotFoundException("Please put your credentials into Settings/servercreds.json file");
-        }
-
-        assemblyApi = new AssemblyApi(new ApiClient());
-        ApiClient client = assemblyApi.getApiClient();
-        client.setBaseUrl(creds.get("BaseUrl")).setAppKey(creds.get("AppKey")).setAppSid(creds.get("AppSid"));
-    }
+public interface Authentication {
+    /**
+     * Apply authentication settings to header and query params.
+     *
+     * @param queryParams List of query parameters
+     * @param headerParams Map of header parameters
+     */
+    void applyToParams(List<Pair> queryParams, Map<String, String> headerParams);
 }

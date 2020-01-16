@@ -24,8 +24,8 @@
  * </summary>
  * --------------------------------------------------------------------------------------
  */
-package com.groupdocs.assembly.model.requests;
-import com.groupdocs.assembly.model.*;
+package com.groupdocs.assembly.cloud.model.requests;
+import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*

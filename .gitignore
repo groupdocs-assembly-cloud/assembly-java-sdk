@@ -19,11 +19,3 @@ hs_err_pid*
 target
 .gradle
 build
-
-#IDEs
-.settings/*
-.idea/*
-.vscode/*
-
-.swagger-codegen/*
-servercreds.json

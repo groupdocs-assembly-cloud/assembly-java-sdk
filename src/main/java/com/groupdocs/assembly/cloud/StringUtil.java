@@ -25,67 +25,45 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly.auth;
-
-import com.groupdocs.assembly.Pair;
-
-import java.util.Map;
-import java.util.List;
+package com.groupdocs.assembly.cloud;
 
 
-public class ApiKeyAuth implements Authentication {
-  private final String location;
-  private final String paramName;
-
-  private String apiKey;
-  private String apiKeyPrefix;
-
-  public ApiKeyAuth(String location, String paramName) {
-    this.location = location;
-    this.paramName = paramName;
-  }
-
-  public String getLocation() {
-    return location;
-  }
-
-  public String getParamName() {
-    return paramName;
-  }
-
-  public String getApiKey() {
-    return apiKey;
-  }
-
-  public void setApiKey(String apiKey) {
-    this.apiKey = apiKey;
-  }
-
-  public String getApiKeyPrefix() {
-    return apiKeyPrefix;
-  }
-
-  public void setApiKeyPrefix(String apiKeyPrefix) {
-    this.apiKeyPrefix = apiKeyPrefix;
-  }
-
-  @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
-    if (apiKey == null) {
-      return;
+public class StringUtil {
+  /**
+   * Check if the given array contains the given value (with case-insensitive comparison).
+   *
+   * @param array The array
+   * @param value The value to search
+   * @return true if the array contains the value
+   */
+  public static boolean containsIgnoreCase(String[] array, String value) {
+    for (String str : array) {
+      if (value == null && str == null) return true;
+      if (value != null && value.equalsIgnoreCase(str)) return true;
     }
-    String value;
-    if (apiKeyPrefix != null) {
-      value = apiKeyPrefix + " " + apiKey;
-    } 
-    else {
-      value = apiKey;
+    return false;
+  }
+
+  /**
+   * Join an array of strings with the given separator.
+   * <p>
+   * Note: This might be replaced by utility method from commons-lang or guava someday
+   * if one of those libraries is added as dependency.
+   * </p>
+   *
+   * @param array     The array of strings
+   * @param separator The separator
+   * @return the resulting string
+   */
+  public static String join(String[] array, String separator) {
+    int len = array.length;
+    if (len == 0) return "";
+
+    StringBuilder out = new StringBuilder();
+    out.append(array[0]);
+    for (int i = 1; i < len; i++) {
+      out.append(separator).append(array[i]);
     }
-    if ("query".equals(location)) {
-      queryParams.add(new Pair(paramName, value));
-    } 
-    else if ("header".equals(location)) {
-      headerParams.put(paramName, value);
-    }
+    return out.toString();
   }
 }

@@ -1,6 +1,6 @@
 lazy val root = (project in file(".")).
   settings(
-    organization := "com.groupdocs.assembly",
+    organization := "com.groupdocs.assembly.cloud",
     name := "GroupDocsAssemblyCloud",
     version := "1.0.0",
     scalaVersion := "2.11.4",

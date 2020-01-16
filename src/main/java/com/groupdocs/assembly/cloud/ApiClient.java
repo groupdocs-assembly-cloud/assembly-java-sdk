@@ -24,7 +24,7 @@
  * </summary>
  * --------------------------------------------------------------------------------
  */
-package com.groupdocs.assembly;
+package com.groupdocs.assembly.cloud;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

@@ -25,7 +25,7 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
+package com.groupdocs.assembly.cloud;
 
 import java.util.Map;
 import java.util.List;
