@@ -25,8 +25,8 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
-import com.groupdocs.assembly.api.AssemblyApi;
+package com.groupdocs.assembly.cloud;
+import com.groupdocs.assembly.cloud.api.AssemblyApi;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import java.io.FileNotFoundException;

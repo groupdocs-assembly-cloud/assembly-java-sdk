@@ -25,14 +25,14 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly.api;
+package com.groupdocs.assembly.cloud.api;
 
-import com.groupdocs.assembly.ApiException;
+import com.groupdocs.assembly.cloud.ApiException;
 import java.io.File;
 
-import com.groupdocs.assembly.TestInitializer;
-import com.groupdocs.assembly.model.LoadSaveOptionsData;
-import com.groupdocs.assembly.model.requests.PostAssembleDocumentRequest;
+import com.groupdocs.assembly.cloud.TestInitializer;
+import com.groupdocs.assembly.cloud.model.LoadSaveOptionsData;
+import com.groupdocs.assembly.cloud.model.requests.PostAssembleDocumentRequest;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.Ignore;

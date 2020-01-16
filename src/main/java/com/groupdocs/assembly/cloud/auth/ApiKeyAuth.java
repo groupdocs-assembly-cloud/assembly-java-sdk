@@ -25,9 +25,9 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly.auth;
+package com.groupdocs.assembly.cloud.auth;
 
-import com.groupdocs.assembly.Pair;
+import com.groupdocs.assembly.cloud.Pair;
 
 import java.util.Map;
 import java.util.List;
@@ -77,12 +77,14 @@ public class ApiKeyAuth implements Authentication {
     String value;
     if (apiKeyPrefix != null) {
       value = apiKeyPrefix + " " + apiKey;
-    } else {
+    } 
+    else {
       value = apiKey;
     }
     if ("query".equals(location)) {
       queryParams.add(new Pair(paramName, value));
-    } else if ("header".equals(location)) {
+    } 
+    else if ("header".equals(location)) {
       headerParams.put(paramName, value);
     }
   }

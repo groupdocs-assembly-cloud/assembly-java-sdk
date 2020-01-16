@@ -25,46 +25,18 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly.model;
+package com.groupdocs.assembly.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 
 /**
- * Save options data which is using for specifying additional save options, like save format and etc.
+ * The empty type used as a flag.             
  */
-@ApiModel(description = "Save options data which is using for specifying additional save options, like save format and etc.")
+@ApiModel(description = "The empty type used as a flag.             ")
 
-public class LoadSaveOptionsData {
-  @SerializedName("SaveFormat")
-  private String saveFormat = null;
-
-  public LoadSaveOptionsData saveFormat(String saveFormat) {
-    this.saveFormat = saveFormat;
-    return this;
-  }
-
-   /**
-   * Save format for assembled document
-   * @return saveFormat
-  **/
-  @ApiModelProperty(value = "Save format for assembled document")
-  public String getSaveFormat() {
-    return saveFormat;
-  }
-
-  public void setSaveFormat(String saveFormat) {
-    this.saveFormat = saveFormat;
-  }
-
+public class FileResponse {
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -74,22 +46,20 @@ public class LoadSaveOptionsData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoadSaveOptionsData loadSaveOptionsData = (LoadSaveOptionsData) o;
-    return Objects.equals(this.saveFormat, loadSaveOptionsData.saveFormat);
+    return true;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveFormat);
+    return Objects.hash();
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoadSaveOptionsData {\n");
+    sb.append("class FileResponse {\n");
     
-    sb.append("    saveFormat: ").append(toIndentedString(saveFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

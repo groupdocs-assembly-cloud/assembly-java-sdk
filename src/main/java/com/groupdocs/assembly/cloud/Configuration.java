@@ -25,19 +25,30 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly.auth;
+package com.groupdocs.assembly.cloud;
 
-import com.groupdocs.assembly.Pair;
 
-import java.util.Map;
-import java.util.List;
+public class Configuration {
+    private static ApiClient defaultApiClient;
 
-public interface Authentication {
     /**
-     * Apply authentication settings to header and query params.
+     * Get the default API client, which would be used when creating API
+     * instances without providing an API client.
      *
-     * @param queryParams List of query parameters
-     * @param headerParams Map of header parameters
+     * @return Default API client
      */
-    void applyToParams(List<Pair> queryParams, Map<String, String> headerParams);
+    public static ApiClient getDefaultApiClient() {
+        defaultApiClient = new ApiClient();
+        return defaultApiClient;
+    }
+
+    /**
+     * Set the default API client, which would be used when creating API
+     * instances without providing an API client.
+     *
+     * @param apiClient API client
+     */
+    public static void setDefaultApiClient(ApiClient apiClient) {
+        defaultApiClient = apiClient;
+    }
 }

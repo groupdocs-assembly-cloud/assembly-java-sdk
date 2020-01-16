@@ -25,7 +25,7 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.groupdocs.assembly;
+package com.groupdocs.assembly.cloud;
 
 import java.util.Map;
 import java.util.List;
@@ -36,7 +36,7 @@ public class ApiException extends Exception {
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
 
-    public ApiException() {}
+    public ApiException() { }
 
     public ApiException(Throwable throwable) {
         super(throwable);
