@@ -66,7 +66,7 @@ public class AssemblyApi {
      * @throws ApiException If fail to serialize the request body object
      */
     private com.squareup.okhttp.Call postAssembleDocumentCall(PostAssembleDocumentRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = request.getSaveOptions();
+        Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/assembly/{name}/build"
@@ -80,8 +80,13 @@ public class AssemblyApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-        if (request.getData() != null)
-          localVarFormParams.put("Data", request.getData());
+        if (request.getSaveOptions() != null) {
+            localVarFormParams.put("SaveOptions", new JSON().serialize(request.getSaveOptions()));
+        }
+        
+        if (request.getData() != null) {
+            localVarFormParams.put("Data", request.getData());
+        }
 
         final String[] localVarAccepts = {
             "application/octet-stream"
