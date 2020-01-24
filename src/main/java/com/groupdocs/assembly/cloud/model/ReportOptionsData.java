@@ -43,11 +43,14 @@ import java.io.IOException;
  */
 @ApiModel(description = "Save options data which is using for specifying additional save options, like save format and etc.")
 
-public class LoadSaveOptionsData {
+public class ReportOptionsData {
   @SerializedName("SaveFormat")
   private String saveFormat = null;
 
-  public LoadSaveOptionsData saveFormat(String saveFormat) {
+  @SerializedName("ReportData")
+  private String reportData = null;
+
+  public ReportOptionsData saveFormat(String saveFormat) {
     this.saveFormat = saveFormat;
     return this;
   }
@@ -65,6 +68,24 @@ public class LoadSaveOptionsData {
     this.saveFormat = saveFormat;
   }
 
+  public ReportOptionsData reportData(String reportData) {
+    this.reportData = reportData;
+    return this;
+  }
+
+   /**
+   * Data for report
+   * @return reportData
+  **/
+  @ApiModelProperty(value = "Data for report")
+  public String getReportData() {
+    return reportData;
+  }
+
+  public void setReportData(String reportData) {
+    this.reportData = reportData;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -74,22 +95,24 @@ public class LoadSaveOptionsData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoadSaveOptionsData loadSaveOptionsData = (LoadSaveOptionsData) o;
-    return Objects.equals(this.saveFormat, loadSaveOptionsData.saveFormat);
+    ReportOptionsData reportOptionsData = (ReportOptionsData) o;
+    return Objects.equals(this.saveFormat, reportOptionsData.saveFormat) &&
+        Objects.equals(this.reportData, reportOptionsData.reportData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveFormat);
+    return Objects.hash(saveFormat, reportData);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoadSaveOptionsData {\n");
+    sb.append("class ReportOptionsData {\n");
     
     sb.append("    saveFormat: ").append(toIndentedString(saveFormat)).append("\n");
+    sb.append("    reportData: ").append(toIndentedString(reportData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

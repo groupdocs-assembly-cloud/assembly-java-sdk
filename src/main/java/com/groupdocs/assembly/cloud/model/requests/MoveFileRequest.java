@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FileMoveFileRequest.java">
+ * <copyright company="GroupDocs" file="MoveFileRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,9 +29,9 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for fileMoveFile operation.
+ * Request model for moveFile operation.
  */
-public class FileMoveFileRequest {
+public class MoveFileRequest {
     /*
      * Destination file path e.g. '/dest.ext'
      */
@@ -58,7 +58,7 @@ public class FileMoveFileRequest {
     private String VersionId;
     
     /*
-     * Initializes a new instance of the fileMoveFileRequest class.
+     * Initializes a new instance of the moveFileRequest class.
      *  
      * @param String destPath Destination file path e.g. '/dest.ext'
      * @param String srcPath Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'
@@ -66,7 +66,7 @@ public class FileMoveFileRequest {
      * @param String destStorageName Destination storage name
      * @param String versionId File version ID to move
      */
-    public FileMoveFileRequest(String destPath,  String srcPath,  String srcStorageName,  String destStorageName,  String versionId) {
+    public MoveFileRequest(String destPath,  String srcPath,  String srcStorageName,  String destStorageName,  String versionId) {
         DestPath = destPath;
         SrcPath = srcPath;
         SrcStorageName = srcStorageName;

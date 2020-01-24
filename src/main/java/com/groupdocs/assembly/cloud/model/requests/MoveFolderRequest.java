@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FolderCopyFolderRequest.java">
+ * <copyright company="GroupDocs" file="MoveFolderRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,11 +29,11 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for folderCopyFolder operation.
+ * Request model for moveFolder operation.
  */
-public class FolderCopyFolderRequest {
+public class MoveFolderRequest {
     /*
-     * Destination folder path e.g. '/dst'
+     * Destination folder path to move to e.g '/dst'
      */
     private String DestPath;
 
@@ -53,14 +53,14 @@ public class FolderCopyFolderRequest {
     private String DestStorageName;
     
     /*
-     * Initializes a new instance of the folderCopyFolderRequest class.
+     * Initializes a new instance of the moveFolderRequest class.
      *  
-     * @param String destPath Destination folder path e.g. '/dst'
+     * @param String destPath Destination folder path to move to e.g '/dst'
      * @param String srcPath Source folder path e.g. /Folder1
      * @param String srcStorageName Source storage name
      * @param String destStorageName Destination storage name
      */
-    public FolderCopyFolderRequest(String destPath,  String srcPath,  String srcStorageName,  String destStorageName) {
+    public MoveFolderRequest(String destPath,  String srcPath,  String srcStorageName,  String destStorageName) {
         DestPath = destPath;
         SrcPath = srcPath;
         SrcStorageName = srcStorageName;
@@ -68,14 +68,14 @@ public class FolderCopyFolderRequest {
     }
 
     /*
-     *  Gets Destination folder path e.g. '/dst'
+     *  Gets Destination folder path to move to e.g '/dst'
      */
     public String getDestPath() {
         return DestPath;
     }
 
     /*
-     * Sets Destination folder path e.g. '/dst'
+     * Sets Destination folder path to move to e.g '/dst'
      */
     public void setDestPath(String value) {
         DestPath = value;

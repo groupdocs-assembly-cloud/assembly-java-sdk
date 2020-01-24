@@ -63,23 +63,23 @@ public class AssemblyApiTest extends TestCase {
      * @throws ApiException
      *          if the Api call fails
      */
-    public void testPostAssembleDocument() throws ApiException {
+    public void testPostAssembleDocument() throws ApiException, java.io.IOException {
         String name = "TestAllChartTypes.docx";
 
-        File data = new File(Paths.get(TestInitializer.LocalTestFolder, "Teams.json").toString());
-        LoadSaveOptionsData saveOptions = new LoadSaveOptionsData();
-        saveOptions.setSaveFormat("docx");
+        ReportOptionsData saveOptions = new ReportOptionsData();
+        saveOptions.setSaveFormat("pdf");
+        saveOptions.setReportData(new String(Files.readAllBytes(Paths.get(TestInitializer.LocalTestFolder, "Teams.json"))));
         
-        FileUploadFileRequest uploadFileRequest = new FileUploadFileRequest(
+        UploadFileRequest uploadFileRequest = new UploadFileRequest(
                 new File(TestInitializer.LocalTestFolder, name),
                 Paths.get("Temp/SdkTests/TestData/GroupDocs.Assembly", name).toString(),
                 null);
 
-        FilesUploadResult uploadFileResponse = TestInitializer.assemblyApi.fileUploadFile(uploadFileRequest);
+        FilesUploadResult uploadFileResponse = TestInitializer.assemblyApi.uploadFile(uploadFileRequest);
         assertTrue(uploadFileResponse.getErrors().size() == 0);
         assertTrue(uploadFileResponse.getUploaded().size() == 1);
         
-        PostAssembleDocumentRequest request = new PostAssembleDocumentRequest(name, data, saveOptions, null, null);
+        PostAssembleDocumentRequest request = new PostAssembleDocumentRequest(name, saveOptions, null, null);
         File response = TestInitializer.assemblyApi.postAssembleDocument(request);
         assertTrue(response.length() > 0);
     }

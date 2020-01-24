@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FolderGetFilesListRequest.java">
+ * <copyright company="GroupDocs" file="UploadFileRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,11 +29,16 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for folderGetFilesList operation.
+ * Request model for uploadFile operation.
  */
-public class FolderGetFilesListRequest {
+public class UploadFileRequest {
     /*
-     * Folder path e.g. /Folder1
+     * File to upload
+     */
+    private File File;
+
+    /*
+     * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
      */
     private String Path;
 
@@ -43,25 +48,41 @@ public class FolderGetFilesListRequest {
     private String StorageName;
     
     /*
-     * Initializes a new instance of the folderGetFilesListRequest class.
+     * Initializes a new instance of the uploadFileRequest class.
      *  
-     * @param String path Folder path e.g. /Folder1
+     * @param File file File to upload
+     * @param String path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
      * @param String storageName Storage name
      */
-    public FolderGetFilesListRequest(String path,  String storageName) {
+    public UploadFileRequest(File file,  String path,  String storageName) {
+        File = file;
         Path = path;
         StorageName = storageName;
     }
 
     /*
-     *  Gets Folder path e.g. /Folder1
+     *  Gets File to upload
+     */
+    public File getFile() {
+        return File;
+    }
+
+    /*
+     * Sets File to upload
+     */
+    public void setFile(File value) {
+        File = value;
+    }
+
+    /*
+     *  Gets Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
      */
     public String getPath() {
         return Path;
     }
 
     /*
-     * Sets Folder path e.g. /Folder1
+     * Sets Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.
      */
     public void setPath(String value) {
         Path = value;

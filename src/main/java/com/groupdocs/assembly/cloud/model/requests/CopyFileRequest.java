@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FileCopyFileRequest.java">
+ * <copyright company="GroupDocs" file="CopyFileRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,9 +29,9 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for fileCopyFile operation.
+ * Request model for copyFile operation.
  */
-public class FileCopyFileRequest {
+public class CopyFileRequest {
     /*
      * Destination file path
      */
@@ -58,7 +58,7 @@ public class FileCopyFileRequest {
     private String VersionId;
     
     /*
-     * Initializes a new instance of the fileCopyFileRequest class.
+     * Initializes a new instance of the copyFileRequest class.
      *  
      * @param String destPath Destination file path
      * @param String srcPath Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'
@@ -66,7 +66,7 @@ public class FileCopyFileRequest {
      * @param String destStorageName Destination storage name
      * @param String versionId File version ID to copy
      */
-    public FileCopyFileRequest(String destPath,  String srcPath,  String srcStorageName,  String destStorageName,  String versionId) {
+    public CopyFileRequest(String destPath,  String srcPath,  String srcStorageName,  String destStorageName,  String versionId) {
         DestPath = destPath;
         SrcPath = srcPath;
         SrcStorageName = srcStorageName;

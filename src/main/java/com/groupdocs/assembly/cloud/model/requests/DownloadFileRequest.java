@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FileDownloadFileRequest.java">
+ * <copyright company="GroupDocs" file="DownloadFileRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,9 +29,9 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for fileDownloadFile operation.
+ * Request model for downloadFile operation.
  */
-public class FileDownloadFileRequest {
+public class DownloadFileRequest {
     /*
      * Path of the file including the file name and extension e.g. /folder1/file.ext
      */
@@ -48,13 +48,13 @@ public class FileDownloadFileRequest {
     private String VersionId;
     
     /*
-     * Initializes a new instance of the fileDownloadFileRequest class.
+     * Initializes a new instance of the downloadFileRequest class.
      *  
      * @param String path Path of the file including the file name and extension e.g. /folder1/file.ext
      * @param String storageName Storage name
      * @param String versionId File version ID to download
      */
-    public FileDownloadFileRequest(String path,  String storageName,  String versionId) {
+    public DownloadFileRequest(String path,  String storageName,  String versionId) {
         Path = path;
         StorageName = storageName;
         VersionId = versionId;

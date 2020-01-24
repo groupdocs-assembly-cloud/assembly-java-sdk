@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FolderDeleteFolderRequest.java">
+ * <copyright company="GroupDocs" file="DeleteFolderRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,9 +29,9 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for folderDeleteFolder operation.
+ * Request model for deleteFolder operation.
  */
-public class FolderDeleteFolderRequest {
+public class DeleteFolderRequest {
     /*
      * Folder path e.g. /Folder1s
      */
@@ -48,13 +48,13 @@ public class FolderDeleteFolderRequest {
     private Boolean Recursive;
     
     /*
-     * Initializes a new instance of the folderDeleteFolderRequest class.
+     * Initializes a new instance of the deleteFolderRequest class.
      *  
      * @param String path Folder path e.g. /Folder1s
      * @param String storageName Storage name
      * @param Boolean recursive Enable to delete folders, subfolders and files
      */
-    public FolderDeleteFolderRequest(String path,  String storageName,  Boolean recursive) {
+    public DeleteFolderRequest(String path,  String storageName,  Boolean recursive) {
         Path = path;
         StorageName = storageName;
         Recursive = recursive;

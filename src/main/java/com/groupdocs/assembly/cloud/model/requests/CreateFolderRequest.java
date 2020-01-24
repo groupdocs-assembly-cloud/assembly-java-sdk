@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="GroupDocs" file="FileDeleteFileRequest.java">
+ * <copyright company="GroupDocs" file="CreateFolderRequest.java">
  *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
@@ -29,11 +29,11 @@ import com.groupdocs.assembly.cloud.model.*;
 import java.io.File;
 
 /*
- * Request model for fileDeleteFile operation.
+ * Request model for createFolder operation.
  */
-public class FileDeleteFileRequest {
+public class CreateFolderRequest {
     /*
-     * Path of the file including file name and extension e.g. /Folder1/file.ext
+     * Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
      */
     private String Path;
 
@@ -41,34 +41,27 @@ public class FileDeleteFileRequest {
      * Storage name
      */
     private String StorageName;
-
-    /*
-     * File version ID to delete
-     */
-    private String VersionId;
     
     /*
-     * Initializes a new instance of the fileDeleteFileRequest class.
+     * Initializes a new instance of the createFolderRequest class.
      *  
-     * @param String path Path of the file including file name and extension e.g. /Folder1/file.ext
+     * @param String path Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
      * @param String storageName Storage name
-     * @param String versionId File version ID to delete
      */
-    public FileDeleteFileRequest(String path,  String storageName,  String versionId) {
+    public CreateFolderRequest(String path,  String storageName) {
         Path = path;
         StorageName = storageName;
-        VersionId = versionId;
     }
 
     /*
-     *  Gets Path of the file including file name and extension e.g. /Folder1/file.ext
+     *  Gets Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
      */
     public String getPath() {
         return Path;
     }
 
     /*
-     * Sets Path of the file including file name and extension e.g. /Folder1/file.ext
+     * Sets Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
      */
     public void setPath(String value) {
         Path = value;
@@ -86,19 +79,5 @@ public class FileDeleteFileRequest {
      */
     public void setStorageName(String value) {
         StorageName = value;
-    }
-
-    /*
-     *  Gets File version ID to delete
-     */
-    public String getVersionId() {
-        return VersionId;
-    }
-
-    /*
-     * Sets File version ID to delete
-     */
-    public void setVersionId(String value) {
-        VersionId = value;
     }
 }
