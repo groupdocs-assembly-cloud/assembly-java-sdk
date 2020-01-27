@@ -30,9 +30,9 @@ package com.groupdocs.assembly.cloud.api;
 import com.groupdocs.assembly.cloud.ApiException;
 import java.io.File;
 
-import com.groupdocs.assembly.cloud.TestInitializer;
-import com.groupdocs.assembly.cloud.model.LoadSaveOptionsData;
-import com.groupdocs.assembly.cloud.model.requests.PostAssembleDocumentRequest;
+import com.groupdocs.assembly.cloud.*;
+import com.groupdocs.assembly.cloud.model.*;
+import com.groupdocs.assembly.cloud.model.requests.*;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -63,16 +63,23 @@ public class AssemblyApiTest extends TestCase {
      * @throws ApiException
      *          if the Api call fails
      */
-    public void testPostAssembleDocument() throws ApiException {
+    public void testPostAssembleDocument() throws ApiException, java.io.IOException {
         String name = "TestAllChartTypes.docx";
 
-        File data = new File(Paths.get(TestInitializer.LocalTestFolder, "Teams.json").toString());
-                //new String(Files.readAllBytes(Paths.get(TestInitializer.LocalTestFolder, name)), StandardCharsets.UTF_8);
-        LoadSaveOptionsData saveOptions = new LoadSaveOptionsData();
-        saveOptions.setSaveFormat("docx");
-        String folder = null;
-        String destFileName = null;
-        PostAssembleDocumentRequest request = new PostAssembleDocumentRequest(name, data, saveOptions, null, null);
+        ReportOptionsData saveOptions = new ReportOptionsData();
+        saveOptions.setSaveFormat("pdf");
+        saveOptions.setReportData(new String(Files.readAllBytes(Paths.get(TestInitializer.LocalTestFolder, "Teams.json"))));
+        
+        UploadFileRequest uploadFileRequest = new UploadFileRequest(
+                new File(TestInitializer.LocalTestFolder, name),
+                Paths.get("Temp/SdkTests/TestData/GroupDocs.Assembly", name).toString(),
+                null);
+
+        FilesUploadResult uploadFileResponse = TestInitializer.assemblyApi.uploadFile(uploadFileRequest);
+        assertTrue(uploadFileResponse.getErrors().size() == 0);
+        assertTrue(uploadFileResponse.getUploaded().size() == 1);
+        
+        PostAssembleDocumentRequest request = new PostAssembleDocumentRequest(name, saveOptions, null, null);
         File response = TestInitializer.assemblyApi.postAssembleDocument(request);
         assertTrue(response.length() > 0);
     }
