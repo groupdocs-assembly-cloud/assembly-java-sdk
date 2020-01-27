@@ -34,35 +34,46 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.groupdocs.assembly.cloud.model.StorageFile;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Save options data which is using for specifying additional save options, like save format and etc.
+ * Files list
  */
-@ApiModel(description = "Save options data which is using for specifying additional save options, like save format and etc.")
+@ApiModel(description = "Files list")
 
-public class LoadSaveOptionsData {
-  @SerializedName("SaveFormat")
-  private String saveFormat = null;
+public class FilesList {
+  @SerializedName("Value")
+  private List<StorageFile> value = null;
 
-  public LoadSaveOptionsData saveFormat(String saveFormat) {
-    this.saveFormat = saveFormat;
+  public FilesList value(List<StorageFile> value) {
+    this.value = value;
+    return this;
+  }
+
+  public FilesList addValueItem(StorageFile valueItem) {
+    if (this.value == null) {
+      this.value = new ArrayList<StorageFile>();
+    }
+    this.value.add(valueItem);
     return this;
   }
 
    /**
-   * Save format for assembled document
-   * @return saveFormat
+   * Files and folders contained by folder .
+   * @return value
   **/
-  @ApiModelProperty(value = "Save format for assembled document")
-  public String getSaveFormat() {
-    return saveFormat;
+  @ApiModelProperty(value = "Files and folders contained by folder .")
+  public List<StorageFile> getValue() {
+    return value;
   }
 
-  public void setSaveFormat(String saveFormat) {
-    this.saveFormat = saveFormat;
+  public void setValue(List<StorageFile> value) {
+    this.value = value;
   }
 
 
@@ -74,22 +85,22 @@ public class LoadSaveOptionsData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoadSaveOptionsData loadSaveOptionsData = (LoadSaveOptionsData) o;
-    return Objects.equals(this.saveFormat, loadSaveOptionsData.saveFormat);
+    FilesList filesList = (FilesList) o;
+    return Objects.equals(this.value, filesList.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveFormat);
+    return Objects.hash(value);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoadSaveOptionsData {\n");
+    sb.append("class FilesList {\n");
     
-    sb.append("    saveFormat: ").append(toIndentedString(saveFormat)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

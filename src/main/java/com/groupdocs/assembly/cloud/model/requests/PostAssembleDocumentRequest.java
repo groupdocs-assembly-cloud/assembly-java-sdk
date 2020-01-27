@@ -38,14 +38,9 @@ public class PostAssembleDocumentRequest {
     private String Name;
 
     /*
-     * Report data in JSON or XML format
+     * Report Data Options. It should be JSON with SaveFormat and ReportData
      */
-    private File Data;
-
-    /*
-     * Save options in json format
-     */
-    private LoadSaveOptionsData SaveOptions;
+    private ReportOptionsData ReportData;
 
     /*
      * Folder path where template file is located(on a storage)
@@ -61,15 +56,13 @@ public class PostAssembleDocumentRequest {
      * Initializes a new instance of the postAssembleDocumentRequest class.
      *  
      * @param String name File name of template, which is located on a storage
-     * @param File data Report data in JSON or XML format
-     * @param LoadSaveOptionsData saveOptions Save options in json format
+     * @param ReportOptionsData reportData Report Data Options. It should be JSON with SaveFormat and ReportData
      * @param String folder Folder path where template file is located(on a storage)
      * @param String destFileName Result name of built document
      */
-    public PostAssembleDocumentRequest(String name,  File data,  LoadSaveOptionsData saveOptions,  String folder,  String destFileName) {
+    public PostAssembleDocumentRequest(String name,  ReportOptionsData reportData,  String folder,  String destFileName) {
         Name = name;
-        Data = data;
-        SaveOptions = saveOptions;
+        ReportData = reportData;
         Folder = folder;
         DestFileName = destFileName;
     }
@@ -89,31 +82,17 @@ public class PostAssembleDocumentRequest {
     }
 
     /*
-     *  Gets Report data in JSON or XML format
+     *  Gets Report Data Options. It should be JSON with SaveFormat and ReportData
      */
-    public File getData() {
-        return Data;
+    public ReportOptionsData getReportData() {
+        return ReportData;
     }
 
     /*
-     * Sets Report data in JSON or XML format
+     * Sets Report Data Options. It should be JSON with SaveFormat and ReportData
      */
-    public void setData(File value) {
-        Data = value;
-    }
-
-    /*
-     *  Gets Save options in json format
-     */
-    public LoadSaveOptionsData getSaveOptions() {
-        return SaveOptions;
-    }
-
-    /*
-     * Sets Save options in json format
-     */
-    public void setSaveOptions(LoadSaveOptionsData value) {
-        SaveOptions = value;
+    public void setReportData(ReportOptionsData value) {
+        ReportData = value;
     }
 
     /*
