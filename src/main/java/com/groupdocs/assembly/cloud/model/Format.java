@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="GroupDocs">
- *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+ * <copyright company="Aspose">
+ *   Copyright (c) 2020 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -56,10 +56,10 @@ public class Format {
   }
 
    /**
-   * File format.
+   * Gets or sets file format.
    * @return fileFormat
   **/
-  @ApiModelProperty(value = "File format.")
+  @ApiModelProperty(value = "Gets or sets file format.")
   public String getFileFormat() {
     return fileFormat;
   }
@@ -74,10 +74,10 @@ public class Format {
   }
 
    /**
-   * File extension.
+   * Gets or sets file extension.
    * @return extension
   **/
-  @ApiModelProperty(value = "File extension.")
+  @ApiModelProperty(value = "Gets or sets file extension.")
   public String getExtension() {
     return extension;
   }

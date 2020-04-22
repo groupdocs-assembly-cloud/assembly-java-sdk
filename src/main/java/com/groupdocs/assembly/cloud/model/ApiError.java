@@ -34,17 +34,18 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.assembly.cloud.model.ErrorDetails;
+import com.groupdocs.assembly.cloud.model.ApiError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.threeten.bp.OffsetDateTime;
 
 /**
- * Error
+ * Error class.             
  */
-@ApiModel(description = "Error")
+@ApiModel(description = "Error class.             ")
 
-public class Error {
+public class ApiError {
   @SerializedName("Code")
   private String code = null;
 
@@ -54,19 +55,22 @@ public class Error {
   @SerializedName("Description")
   private String description = null;
 
-  @SerializedName("InnerError")
-  private ErrorDetails innerError = null;
+  @SerializedName("DateTime")
+  private OffsetDateTime dateTime = null;
 
-  public Error code(String code) {
+  @SerializedName("InnerApiError")
+  private ApiError innerApiError = null;
+
+  public ApiError code(String code) {
     this.code = code;
     return this;
   }
 
    /**
-   * Code             
+   * Gets or sets api error code.
    * @return code
   **/
-  @ApiModelProperty(value = "Code             ")
+  @ApiModelProperty(value = "Gets or sets api error code.")
   public String getCode() {
     return code;
   }
@@ -75,16 +79,16 @@ public class Error {
     this.code = code;
   }
 
-  public Error message(String message) {
+  public ApiError message(String message) {
     this.message = message;
     return this;
   }
 
    /**
-   * Message             
+   * Gets or sets error message.
    * @return message
   **/
-  @ApiModelProperty(value = "Message             ")
+  @ApiModelProperty(value = "Gets or sets error message.")
   public String getMessage() {
     return message;
   }
@@ -93,16 +97,16 @@ public class Error {
     this.message = message;
   }
 
-  public Error description(String description) {
+  public ApiError description(String description) {
     this.description = description;
     return this;
   }
 
    /**
-   * Description             
+   * Gets or sets error description.
    * @return description
   **/
-  @ApiModelProperty(value = "Description             ")
+  @ApiModelProperty(value = "Gets or sets error description.")
   public String getDescription() {
     return description;
   }
@@ -111,22 +115,40 @@ public class Error {
     this.description = description;
   }
 
-  public Error innerError(ErrorDetails innerError) {
-    this.innerError = innerError;
+  public ApiError dateTime(OffsetDateTime dateTime) {
+    this.dateTime = dateTime;
     return this;
   }
 
    /**
-   * Inner Error             
-   * @return innerError
+   * Gets or sets server datetime.
+   * @return dateTime
   **/
-  @ApiModelProperty(value = "Inner Error             ")
-  public ErrorDetails getInnerError() {
-    return innerError;
+  @ApiModelProperty(value = "Gets or sets server datetime.")
+  public OffsetDateTime getDateTime() {
+    return dateTime;
   }
 
-  public void setInnerError(ErrorDetails innerError) {
-    this.innerError = innerError;
+  public void setDateTime(OffsetDateTime dateTime) {
+    this.dateTime = dateTime;
+  }
+
+  public ApiError innerApiError(ApiError innerApiError) {
+    this.innerApiError = innerApiError;
+    return this;
+  }
+
+   /**
+   * Gets or sets inner error.
+   * @return innerApiError
+  **/
+  @ApiModelProperty(value = "Gets or sets inner error.")
+  public ApiError getInnerApiError() {
+    return innerApiError;
+  }
+
+  public void setInnerApiError(ApiError innerApiError) {
+    this.innerApiError = innerApiError;
   }
 
 
@@ -138,28 +160,30 @@ public class Error {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
-    return Objects.equals(this.code, error.code) &&
-        Objects.equals(this.message, error.message) &&
-        Objects.equals(this.description, error.description) &&
-        Objects.equals(this.innerError, error.innerError);
+    ApiError apiError = (ApiError) o;
+    return Objects.equals(this.code, apiError.code) &&
+        Objects.equals(this.message, apiError.message) &&
+        Objects.equals(this.description, apiError.description) &&
+        Objects.equals(this.dateTime, apiError.dateTime) &&
+        Objects.equals(this.innerApiError, apiError.innerApiError);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, message, description, innerError);
+    return Objects.hash(code, message, description, dateTime, innerApiError);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class ApiError {\n");
     
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    innerError: ").append(toIndentedString(innerError)).append("\n");
+    sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
+    sb.append("    innerApiError: ").append(toIndentedString(innerApiError)).append("\n");
     sb.append("}");
     return sb.toString();
   }

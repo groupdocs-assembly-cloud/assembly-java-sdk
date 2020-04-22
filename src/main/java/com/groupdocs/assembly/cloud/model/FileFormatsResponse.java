@@ -34,57 +34,79 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.groupdocs.assembly.cloud.model.AssemblyResponse;
+import com.groupdocs.assembly.cloud.model.FormatCollection;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
 
 /**
- * The error details
+ * Response with file formats.
  */
-@ApiModel(description = "The error details")
+@ApiModel(description = "Response with file formats.")
 
-public class ErrorDetails {
-  @SerializedName("RequestId")
-  private String requestId = null;
+public class FileFormatsResponse extends AssemblyResponse {
+  @SerializedName("FileFormats")
+  private FormatCollection fileFormats = null;
 
-  @SerializedName("Date")
-  private OffsetDateTime date = null;
+  @SerializedName("Code")
+  private Integer code = null;
 
-  public ErrorDetails requestId(String requestId) {
-    this.requestId = requestId;
+  @SerializedName("Status")
+  private String status = null;
+
+  public FileFormatsResponse fileFormats(FormatCollection fileFormats) {
+    this.fileFormats = fileFormats;
     return this;
   }
 
    /**
-   * The request id
-   * @return requestId
+   * Gets or sets file formats.
+   * @return fileFormats
   **/
-  @ApiModelProperty(value = "The request id")
-  public String getRequestId() {
-    return requestId;
+  @ApiModelProperty(value = "Gets or sets file formats.")
+  public FormatCollection getFileFormats() {
+    return fileFormats;
   }
 
-  public void setRequestId(String requestId) {
-    this.requestId = requestId;
+  public void setFileFormats(FormatCollection fileFormats) {
+    this.fileFormats = fileFormats;
   }
 
-  public ErrorDetails date(OffsetDateTime date) {
-    this.date = date;
+  public FileFormatsResponse code(Integer code) {
+    this.code = code;
     return this;
   }
 
    /**
-   * Date
-   * @return date
+   * Gets response status code.
+   * @return code
   **/
-  @ApiModelProperty(required = true, value = "Date")
-  public OffsetDateTime getDate() {
-    return date;
+  @ApiModelProperty(value = "Gets response status code.")
+  public Integer getCode() {
+    return code;
   }
 
-  public void setDate(OffsetDateTime date) {
-    this.date = date;
+  public void setCode(Integer code) {
+    this.code = code;
+  }
+
+  public FileFormatsResponse status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Gets or sets response status.
+   * @return status
+  **/
+  @ApiModelProperty(value = "Gets or sets response status.")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 
@@ -96,24 +118,27 @@ public class ErrorDetails {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorDetails errorDetails = (ErrorDetails) o;
-    return Objects.equals(this.requestId, errorDetails.requestId) &&
-        Objects.equals(this.date, errorDetails.date);
+    FileFormatsResponse fileFormatsResponse = (FileFormatsResponse) o;
+    return Objects.equals(this.fileFormats, fileFormatsResponse.fileFormats) &&
+        Objects.equals(this.code, fileFormatsResponse.code) &&
+        Objects.equals(this.status, fileFormatsResponse.status) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, date);
+    return Objects.hash(fileFormats, code, status, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorDetails {\n");
-    
-    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
-    sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    sb.append("class FileFormatsResponse {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    fileFormats: ").append(toIndentedString(fileFormats)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

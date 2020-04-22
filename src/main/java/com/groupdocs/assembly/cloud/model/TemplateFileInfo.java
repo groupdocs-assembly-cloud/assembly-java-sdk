@@ -34,99 +34,98 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.assembly.cloud.model.ErrorDetails;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Error
+ * TemplateFileInfo dto.             
  */
-@ApiModel(description = "Error")
+@ApiModel(description = "TemplateFileInfo dto.             ")
 
-public class Error {
-  @SerializedName("Code")
-  private String code = null;
+public class TemplateFileInfo {
+  @SerializedName("FilePath")
+  private String filePath = null;
 
-  @SerializedName("Message")
-  private String message = null;
+  @SerializedName("StorageName")
+  private String storageName = null;
 
-  @SerializedName("Description")
-  private String description = null;
+  @SerializedName("VersionId")
+  private String versionId = null;
 
-  @SerializedName("InnerError")
-  private ErrorDetails innerError = null;
+  @SerializedName("Password")
+  private String password = null;
 
-  public Error code(String code) {
-    this.code = code;
+  public TemplateFileInfo filePath(String filePath) {
+    this.filePath = filePath;
     return this;
   }
 
    /**
-   * Code             
-   * @return code
+   * Gets or sets path to file.             
+   * @return filePath
   **/
-  @ApiModelProperty(value = "Code             ")
-  public String getCode() {
-    return code;
+  @ApiModelProperty(value = "Gets or sets path to file.             ")
+  public String getFilePath() {
+    return filePath;
   }
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
   }
 
-  public Error message(String message) {
-    this.message = message;
+  public TemplateFileInfo storageName(String storageName) {
+    this.storageName = storageName;
     return this;
   }
 
    /**
-   * Message             
-   * @return message
+   * Gets or sets the name of storage.             
+   * @return storageName
   **/
-  @ApiModelProperty(value = "Message             ")
-  public String getMessage() {
-    return message;
+  @ApiModelProperty(value = "Gets or sets the name of storage.             ")
+  public String getStorageName() {
+    return storageName;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setStorageName(String storageName) {
+    this.storageName = storageName;
   }
 
-  public Error description(String description) {
-    this.description = description;
+  public TemplateFileInfo versionId(String versionId) {
+    this.versionId = versionId;
     return this;
   }
 
    /**
-   * Description             
-   * @return description
+   * Gets or sets the name of storage.             
+   * @return versionId
   **/
-  @ApiModelProperty(value = "Description             ")
-  public String getDescription() {
-    return description;
+  @ApiModelProperty(value = "Gets or sets the name of storage.             ")
+  public String getVersionId() {
+    return versionId;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setVersionId(String versionId) {
+    this.versionId = versionId;
   }
 
-  public Error innerError(ErrorDetails innerError) {
-    this.innerError = innerError;
+  public TemplateFileInfo password(String password) {
+    this.password = password;
     return this;
   }
 
    /**
-   * Inner Error             
-   * @return innerError
+   * Gets or sets the password.             
+   * @return password
   **/
-  @ApiModelProperty(value = "Inner Error             ")
-  public ErrorDetails getInnerError() {
-    return innerError;
+  @ApiModelProperty(value = "Gets or sets the password.             ")
+  public String getPassword() {
+    return password;
   }
 
-  public void setInnerError(ErrorDetails innerError) {
-    this.innerError = innerError;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 
@@ -138,28 +137,28 @@ public class Error {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
-    return Objects.equals(this.code, error.code) &&
-        Objects.equals(this.message, error.message) &&
-        Objects.equals(this.description, error.description) &&
-        Objects.equals(this.innerError, error.innerError);
+    TemplateFileInfo templateFileInfo = (TemplateFileInfo) o;
+    return Objects.equals(this.filePath, templateFileInfo.filePath) &&
+        Objects.equals(this.storageName, templateFileInfo.storageName) &&
+        Objects.equals(this.versionId, templateFileInfo.versionId) &&
+        Objects.equals(this.password, templateFileInfo.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, message, description, innerError);
+    return Objects.hash(filePath, storageName, versionId, password);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class TemplateFileInfo {\n");
     
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    innerError: ").append(toIndentedString(innerError)).append("\n");
+    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("    storageName: ").append(toIndentedString(storageName)).append("\n");
+    sb.append("    versionId: ").append(toIndentedString(versionId)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

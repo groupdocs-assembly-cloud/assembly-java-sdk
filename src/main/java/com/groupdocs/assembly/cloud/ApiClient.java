@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="GroupDocs">
- *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+ * <copyright company="Aspose">
+ *   Copyright (c) 2020 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- * 
+ *
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- * 
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -87,22 +87,42 @@ public class ApiClient {
     /*
      * Constructor for ApiClient
      */
+    public ApiClient(String appSid, String appKey, String baseUrl) {
+        this();
+        if (appSid == null || appSid.isEmpty()) {
+            throw new IllegalArgumentException("appSid could not be an empty string.");
+        }
+
+        if (appKey == null || appKey.isEmpty()) {
+            throw new IllegalArgumentException("appKey could not be an empty string.");
+        }
+
+        this.appSid = appSid;
+        this.appKey = appKey;
+        if (baseUrl != null) {
+            this.setBaseUrl(baseUrl);
+        }
+    }
+
+    /*
+     * Constructor for ApiClient
+     */
     public ApiClient() {
         httpClient = new OkHttpClient();
         httpClient.setProtocols(Arrays.asList(Protocol.HTTP_1_1));
-        
+
 
         json = new JSON();
 
         // Set default User-Agent.
-         setUserAgent("Swagger-Codegen/1.0.0/java");
+        setUserAgent("Swagger-Codegen/1.0.0/java");
         addDefaultHeader("x-aspose-client", "java sdk");
         addDefaultHeader("x-aspose-client-version", clientVersion);
         setConnectTimeout(5 * 60 * 1000);
         setReadTimeout(5 * 60 * 1000);
     }
 
-     /**
+    /**
      * Get App Key
      *
      * @return App Key
@@ -110,7 +130,7 @@ public class ApiClient {
     public String getAppKey() {
         return appKey;
     }
-    
+
     /**
      * Set App Key
      *
@@ -121,8 +141,8 @@ public class ApiClient {
         this.appKey = appKey;
         return this;
     }
-    
-     /**
+
+    /**
      * Get App Sid
      *
      * @return App Sid
@@ -130,7 +150,7 @@ public class ApiClient {
     public String getAppSid() {
         return appSid;
     }
-    
+
     /**
      * Set App Sid
      *
@@ -161,8 +181,8 @@ public class ApiClient {
         this.apiVersion = apiVersion;
         return this;
     }
-    
-    
+
+
     /**
      * Get base path
      *
@@ -262,7 +282,7 @@ public class ApiClient {
         this.refreshToken = refreshToken;
         return this;
     }
-    
+
     /**
      * Set the User-Agent header's value (by adding to the default header map).
      *
@@ -307,7 +327,7 @@ public class ApiClient {
                 loggingInterceptor = new HttpLoggingInterceptor();
                 loggingInterceptor.setLevel(Level.BODY);
                 httpClient.interceptors().add(loggingInterceptor);
-            } 
+            }
             else {
                 httpClient.interceptors().remove(loggingInterceptor);
                 loggingInterceptor = null;
@@ -415,12 +435,12 @@ public class ApiClient {
     public String parameterToString(Object param) {
         if (param == null) {
             return "";
-        } 
+        }
         else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
             //Serialize to json string and remove the " enclosing characters
             String jsonStr = json.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);
-        } 
+        }
         else if (param instanceof Collection) {
             StringBuilder b = new StringBuilder();
             for (Object o : (Collection) param) {
@@ -430,7 +450,7 @@ public class ApiClient {
                 b.append(String.valueOf(o));
             }
             return b.toString();
-        } 
+        }
         else {
             return String.valueOf(param);
         }
@@ -488,10 +508,10 @@ public class ApiClient {
         // characters
         if ("ssv".equals(collectionFormat)) {
             delimiter = escapeString(" ");
-        } 
+        }
         else if ("tsv".equals(collectionFormat)) {
             delimiter = escapeString("\t");
-        } 
+        }
         else if ("pipes".equals(collectionFormat)) {
             delimiter = escapeString("|");
         }
@@ -530,8 +550,8 @@ public class ApiClient {
      * @return True if the given MIME is JSON, false otherwise.
      */
     public boolean isJsonMime(String mime) {
-      String jsonMime = "(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$";
-      return mime != null && (mime.matches(jsonMime) || mime.equals("*/*"));
+        String jsonMime = "(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$";
+        return mime != null && (mime.matches(jsonMime) || mime.equals("*/*"));
     }
 
     /**
@@ -566,7 +586,7 @@ public class ApiClient {
      */
     public String selectHeaderContentType(String[] contentTypes) {
         if (contentTypes.length == 0 || contentTypes[0].equals("*/*")) {
-             return "application/json";
+            return "application/json";
         }
         for (String contentType : contentTypes) {
             if (isJsonMime(contentType)) {
@@ -585,7 +605,7 @@ public class ApiClient {
     public String escapeString(String str) {
         try {
             return URLEncoder.encode(str, "utf8").replaceAll("\\+", "%20");
-        } 
+        }
         catch (UnsupportedEncodingException e) {
             return str;
         }
@@ -612,11 +632,11 @@ public class ApiClient {
             // Handle binary response (byte array).
             try {
                 return (T) response.body().bytes();
-            } 
+            }
             catch (IOException e) {
                 throw new ApiException(e);
             }
-        } 
+        }
         else if (returnType.equals(File.class)) {
             // Handle file downloading.
             return (T) downloadFileFromResponse(response);
@@ -628,7 +648,7 @@ public class ApiClient {
                 respBody = response.body().string();
             else
                 respBody = null;
-        } 
+        }
         catch (IOException e) {
             throw new ApiException(e);
         }
@@ -644,11 +664,11 @@ public class ApiClient {
         }
         if (isJsonMime(contentType)) {
             return json.deserialize(respBody, returnType);
-        } 
+        }
         else if (returnType.equals(String.class)) {
             // Expecting string, return the raw response body.
             return (T) respBody;
-        } 
+        }
         else {
             throw new ApiException(
                     "Content type \"" + contentType + "\" is not supported for type: " + returnType,
@@ -671,21 +691,21 @@ public class ApiClient {
         if (obj instanceof byte[]) {
             // Binary (byte array) body parameter support.
             return RequestBody.create(MediaType.parse(contentType), (byte[]) obj);
-        } 
+        }
         else if (obj instanceof File) {
             // File body parameter support.
             return RequestBody.create(MediaType.parse(contentType), (File) obj);
-        } 
+        }
         else if (isJsonMime(contentType)) {
             String content;
             if (obj != null) {
                 content = json.serialize(obj);
-            } 
+            }
             else {
                 content = null;
             }
             return RequestBody.create(MediaType.parse(contentType), content);
-        } 
+        }
         else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }
@@ -705,7 +725,7 @@ public class ApiClient {
             sink.writeAll(response.body().source());
             sink.close();
             return file;
-        } 
+        }
         catch (IOException e) {
             throw new ApiException(e);
         }
@@ -735,12 +755,12 @@ public class ApiClient {
         if (filename == null) {
             prefix = "download-";
             suffix = "";
-        } 
+        }
         else {
             int pos = filename.lastIndexOf(".");
             if (pos == -1) {
                 prefix = filename + "-";
-            } 
+            }
             else {
                 prefix = filename.substring(0, pos) + "-";
                 suffix = filename.substring(pos);
@@ -784,7 +804,7 @@ public class ApiClient {
             Response response = call.execute();
             T data = handleResponse(response, returnType);
             return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
-        } 
+        }
         catch (IOException e) {
             throw new ApiException(e);
         }
@@ -823,7 +843,7 @@ public class ApiClient {
                 T result;
                 try {
                     result = (T) handleResponse(response, returnType);
-                } 
+                }
                 catch (ApiException e) {
                     callback.onFailure(e, response.code(), response.headers().toMultimap());
                     return;
@@ -851,23 +871,23 @@ public class ApiClient {
                 if (response.body() != null) {
                     try {
                         response.body().close();
-                    } 
+                    }
                     catch (IOException e) {
                         throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
                     }
                 }
                 return null;
-            } 
+            }
             else {
                 return deserialize(response, returnType);
             }
-        } 
+        }
         else {
             String respBody = null;
             if (response.body() != null) {
                 try {
                     respBody = response.body().string();
-                } 
+                }
                 catch (IOException e) {
                     throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
                 }
@@ -927,23 +947,23 @@ public class ApiClient {
         RequestBody reqBody;
         if (!HttpMethod.permitsRequestBody(method)) {
             reqBody = null;
-        } 
+        }
         else if ("application/x-www-form-urlencoded".equals(contentType)) {
             reqBody = buildRequestBodyFormEncoding(formParams);
-        } 
+        }
         else if ("multipart/form-data".equals(contentType)) {
             reqBody = buildRequestBodyMultipart(formParams);
-        } 
+        }
         else if (body == null) {
             if ("DELETE".equals(method)) {
                 // allow calling DELETE without sending a request body
                 reqBody = null;
-            } 
+            }
             else {
                 // use an empty request body (for POST, PUT and PATCH)
                 reqBody = RequestBody.create(MediaType.parse(contentType), "");
             }
-        } 
+        }
         else {
             reqBody = serialize(body, contentType);
         }
@@ -953,7 +973,7 @@ public class ApiClient {
         if (progressRequestListener != null && reqBody != null) {
             ProgressRequestBody progressRequestBody = new ProgressRequestBody(reqBody, progressRequestListener);
             request = reqBuilder.method(method, progressRequestBody).build();
-        } 
+        }
         else {
             request = reqBuilder.method(method, reqBody).build();
         }
@@ -981,7 +1001,7 @@ public class ApiClient {
                     if (prefix != null) {
                         url.append(prefix);
                         prefix = null;
-                    } 
+                    }
                     else {
                         url.append("&");
                     }
@@ -998,7 +1018,7 @@ public class ApiClient {
                     if (prefix != null) {
                         url.append(prefix);
                         prefix = null;
-                    } 
+                    }
                     else {
                         url.append("&");
                     }
@@ -1058,7 +1078,7 @@ public class ApiClient {
                 Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + param.getKey() + "\"; filename=\"" + file.getName() + "\"");
                 MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));
                 mpBuilder.addPart(partHeaders, RequestBody.create(mediaType, file));
-            } 
+            }
             else {
                 Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + param.getKey() + "\"");
                 mpBuilder.addPart(partHeaders, RequestBody.create(null, parameterToString(param.getValue())));
@@ -1077,13 +1097,13 @@ public class ApiClient {
         String contentType = URLConnection.guessContentTypeFromName(file.getName());
         if (contentType == null) {
             return "application/octet-stream";
-        } 
+        }
         else {
             return contentType;
         }
     }
 
-     /**
+    /**
      * Request OAuth token
      @throw ApiException If authorization is failed
      */
@@ -1111,7 +1131,7 @@ public class ApiClient {
         }
     }
 
-     /**
+    /**
      * Add OAuth2 header
      *
      * @param headerParams Map of request headers
@@ -1123,10 +1143,10 @@ public class ApiClient {
         headerParams.put("Authorization", "Bearer " + accessToken);
     }
 
-    
+
     /**
-    * GetAccessTokenResult class
-    */
+     * GetAccessTokenResult class
+     */
     private class GetAccessTokenResult {
         public String access_token;
         public String refresh_token;

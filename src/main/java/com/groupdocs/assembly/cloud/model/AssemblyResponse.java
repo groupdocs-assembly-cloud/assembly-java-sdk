@@ -29,14 +29,43 @@ package com.groupdocs.assembly.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
 
 /**
- * The empty type used as a flag.             
+ * Base class for all responses.
  */
-@ApiModel(description = "The empty type used as a flag.             ")
+@ApiModel(description = "Base class for all responses.")
 
-public class FileResponse {
+
+public class AssemblyResponse {
+  @SerializedName("RequestId")
+  private String requestId = null;
+
+  public AssemblyResponse requestId(String requestId) {
+    this.requestId = requestId;
+    return this;
+  }
+
+   /**
+   * Gets or sets request Id.
+   * @return requestId
+  **/
+  @ApiModelProperty(value = "Gets or sets request Id.")
+  public String getRequestId() {
+    return requestId;
+  }
+
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -46,20 +75,22 @@ public class FileResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return true;
+    AssemblyResponse assemblyResponse = (AssemblyResponse) o;
+    return Objects.equals(this.requestId, assemblyResponse.requestId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash();
+    return Objects.hash(requestId);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FileResponse {\n");
+    sb.append("class AssemblyResponse {\n");
     
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

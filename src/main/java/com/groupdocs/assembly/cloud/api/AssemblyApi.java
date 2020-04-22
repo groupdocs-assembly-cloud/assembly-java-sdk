@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="GroupDocs">
- *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+ * <copyright company="Aspose">
+ *   Copyright (c) 2020 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,6 +41,10 @@ public class AssemblyApi {
     private Integer NotAuth = 401;
     private Integer BadRequest = 400;
     private ApiClient apiClient;
+    
+    public AssemblyApi(String appSid, String appKey, String baseUrl) {
+        this(new ApiClient(appSid, appKey, baseUrl));
+    }
 
     public AssemblyApi() {
         this(Configuration.getDefaultApiClient());
@@ -58,6 +62,137 @@ public class AssemblyApi {
         this.apiClient = apiClient;
     }
 
+    /**
+     * Build call for assembleDocument
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call assembleDocumentCall(AssembleDocumentRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getAssembleOptions();
+
+        // create path and map variables
+        String localVarPath = "/assembly/assemble";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json", "application/xml"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/xml"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call assembleDocumentValidateBeforeCall(AssembleDocumentRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'AssembleOptions' is set
+        if (request.getAssembleOptions() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'AssembleOptions' when calling assembleDocument");
+        }
+        
+
+        com.squareup.okhttp.Call call = assembleDocumentCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Builds a document using document template and XML or JSON data passed in request.
+     * 
+     * @param request Request object
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File assembleDocument(AssembleDocumentRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = assembleDocumentWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = assembleDocumentWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Builds a document using document template and XML or JSON data passed in request.
+     * 
+     * @param request Request object
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> assembleDocumentWithHttpInfo(AssembleDocumentRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = assembleDocumentValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Builds a document using document template and XML or JSON data passed in request. (asynchronously)
+     * 
+     * @param request Request object
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call assembleDocumentAsync(AssembleDocumentRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = assembleDocumentValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
     /**
      * Build call for copyFile
      * @param progressListener Progress listener
@@ -1048,18 +1183,18 @@ public class AssemblyApi {
      * Retrieves list of supported file formats.
      * 
      * @param request Request object
-     * @return FormatCollection
+     * @return FileFormatsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public FormatCollection getSupportedFileFormats(GetSupportedFileFormatsRequest request) throws ApiException {
+    public FileFormatsResponse getSupportedFileFormats(GetSupportedFileFormatsRequest request) throws ApiException {
         try {
-            ApiResponse<FormatCollection> resp = getSupportedFileFormatsWithHttpInfo(request);
+            ApiResponse<FileFormatsResponse> resp = getSupportedFileFormatsWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<FormatCollection> resp = getSupportedFileFormatsWithHttpInfo(request);
+                ApiResponse<FileFormatsResponse> resp = getSupportedFileFormatsWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -1070,12 +1205,12 @@ public class AssemblyApi {
      * Retrieves list of supported file formats.
      * 
      * @param request Request object
-     * @return ApiResponse&lt;FormatCollection&gt;
+     * @return ApiResponse&lt;FileFormatsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<FormatCollection> getSupportedFileFormatsWithHttpInfo(GetSupportedFileFormatsRequest request) throws ApiException {
+    private ApiResponse<FileFormatsResponse> getSupportedFileFormatsWithHttpInfo(GetSupportedFileFormatsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSupportedFileFormatsValidateBeforeCall(request, null, null);
-        Type localVarReturnType = new TypeToken<FormatCollection>() { }.getType();
+        Type localVarReturnType = new TypeToken<FileFormatsResponse>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1087,7 +1222,7 @@ public class AssemblyApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSupportedFileFormatsAsync(GetSupportedFileFormatsRequest request, final ApiCallback<FormatCollection> callback) throws ApiException {
+    public com.squareup.okhttp.Call getSupportedFileFormatsAsync(GetSupportedFileFormatsRequest request, final ApiCallback<FileFormatsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1109,7 +1244,7 @@ public class AssemblyApi {
         }
 
         com.squareup.okhttp.Call call = getSupportedFileFormatsValidateBeforeCall(request, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<FormatCollection>() { }.getType();
+        Type localVarReturnType = new TypeToken<FileFormatsResponse>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1387,145 +1522,6 @@ public class AssemblyApi {
         return call;
     }
     /**
-     * Build call for postAssembleDocument
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    private com.squareup.okhttp.Call postAssembleDocumentCall(PostAssembleDocumentRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = request.getReportData();
-
-        // create path and map variables
-        String localVarPath = "/assembly/{name}/build"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getName().toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getFolder());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destFileName", request.getDestFileName());
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        
-        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-        
-        final String[] localVarAccepts = {
-            "application/json", "application/xml"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json", "application/xml"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "JWT" };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call postAssembleDocumentValidateBeforeCall(PostAssembleDocumentRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'Name' is set
-        if (request.getName() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Name' when calling postAssembleDocument");
-        }
-        
-        // verify the required parameter 'ReportData' is set
-        if (request.getReportData() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'ReportData' when calling postAssembleDocument");
-        }
-        
-
-        com.squareup.okhttp.Call call = postAssembleDocumentCall(request, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * Builds a document using document template and XML or JSON data passed in request
-     * 
-     * @param request Request object
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public File postAssembleDocument(PostAssembleDocumentRequest request) throws ApiException {
-        try {
-            ApiResponse<File> resp = postAssembleDocumentWithHttpInfo(request);
-            return resp.getData();
-        }
-        catch (ApiException ex) {
-            if (ex.getCode() == NotAuth) {
-                apiClient.requestToken();
-                ApiResponse<File> resp = postAssembleDocumentWithHttpInfo(request);
-                return resp.getData();
-            }
-            throw ex;
-        }
-    }
-
-    /**
-     * Builds a document using document template and XML or JSON data passed in request
-     * 
-     * @param request Request object
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    private ApiResponse<File> postAssembleDocumentWithHttpInfo(PostAssembleDocumentRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = postAssembleDocumentValidateBeforeCall(request, null, null);
-        Type localVarReturnType = new TypeToken<File>() { }.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Builds a document using document template and XML or JSON data passed in request (asynchronously)
-     * 
-     * @param request Request object
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call postAssembleDocumentAsync(PostAssembleDocumentRequest request, final ApiCallback<File> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = postAssembleDocumentValidateBeforeCall(request, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<File>() { }.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
      * Build call for uploadFile
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -1556,7 +1552,7 @@ public class AssemblyApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json", "application/xml", "multipart/form-data"
+            "multipart/form-data"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);

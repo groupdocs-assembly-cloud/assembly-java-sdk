@@ -66,7 +66,8 @@ public class AssemblyApiTest extends TestCase {
     public void testPostAssembleDocument() throws ApiException, java.io.IOException {
         String name = "TestAllChartTypes.docx";
 
-        ReportOptionsData saveOptions = new ReportOptionsData();
+        AssembleOptions saveOptions = new AssembleOptions();
+        saveOptions.setTemplateFileInfo(new TemplateFileInfo().filePath(Paths.get("Temp/SdkTests/TestData/GroupDocs.Assembly", name).toString()));
         saveOptions.setSaveFormat("pdf");
         saveOptions.setReportData(new String(Files.readAllBytes(Paths.get(TestInitializer.LocalTestFolder, "Teams.json"))));
         
@@ -79,8 +80,8 @@ public class AssemblyApiTest extends TestCase {
         assertTrue(uploadFileResponse.getErrors().size() == 0);
         assertTrue(uploadFileResponse.getUploaded().size() == 1);
         
-        PostAssembleDocumentRequest request = new PostAssembleDocumentRequest(name, saveOptions, null, null);
-        File response = TestInitializer.assemblyApi.postAssembleDocument(request);
+        AssembleDocumentRequest request = new AssembleDocumentRequest(saveOptions);
+        File response = TestInitializer.assemblyApi.assembleDocument(request);
         assertTrue(response.length() > 0);
     }
     

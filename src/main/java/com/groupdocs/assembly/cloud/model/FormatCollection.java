@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="GroupDocs">
- *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+ * <copyright company="Aspose">
+ *   Copyright (c) 2020 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,10 +64,10 @@ public class FormatCollection {
   }
 
    /**
-   * Supported file formats.
+   * Gets or sets supported file formats.
    * @return formats
   **/
-  @ApiModelProperty(value = "Supported file formats.")
+  @ApiModelProperty(value = "Gets or sets supported file formats.")
   public List<Format> getFormats() {
     return formats;
   }

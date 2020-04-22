@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="GroupDocs">
- *   Copyright (c) 2019 GroupDocs.Assembly for Cloud
+ * <copyright company="Aspose">
+ *   Copyright (c) 2020 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,56 +34,37 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.groupdocs.assembly.cloud.model.ApiError;
+import com.groupdocs.assembly.cloud.model.AssemblyResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Save options data which is using for specifying additional save options, like save format and etc.
+ * Error response for exceptions.             
  */
-@ApiModel(description = "Save options data which is using for specifying additional save options, like save format and etc.")
+@ApiModel(description = "Error response for exceptions.             ")
 
-public class ReportOptionsData {
-  @SerializedName("SaveFormat")
-  private String saveFormat = null;
+public class AssemblyApiErrorResponse extends AssemblyResponse {
+  @SerializedName("Error")
+  private ApiError error = null;
 
-  @SerializedName("ReportData")
-  private String reportData = null;
-
-  public ReportOptionsData saveFormat(String saveFormat) {
-    this.saveFormat = saveFormat;
+  public AssemblyApiErrorResponse error(ApiError error) {
+    this.error = error;
     return this;
   }
 
    /**
-   * Save format for assembled document
-   * @return saveFormat
+   * Gets or sets error.
+   * @return error
   **/
-  @ApiModelProperty(value = "Save format for assembled document")
-  public String getSaveFormat() {
-    return saveFormat;
+  @ApiModelProperty(value = "Gets or sets error.")
+  public ApiError getError() {
+    return error;
   }
 
-  public void setSaveFormat(String saveFormat) {
-    this.saveFormat = saveFormat;
-  }
-
-  public ReportOptionsData reportData(String reportData) {
-    this.reportData = reportData;
-    return this;
-  }
-
-   /**
-   * Data for report
-   * @return reportData
-  **/
-  @ApiModelProperty(value = "Data for report")
-  public String getReportData() {
-    return reportData;
-  }
-
-  public void setReportData(String reportData) {
-    this.reportData = reportData;
+  public void setError(ApiError error) {
+    this.error = error;
   }
 
 
@@ -95,24 +76,23 @@ public class ReportOptionsData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReportOptionsData reportOptionsData = (ReportOptionsData) o;
-    return Objects.equals(this.saveFormat, reportOptionsData.saveFormat) &&
-        Objects.equals(this.reportData, reportOptionsData.reportData);
+    AssemblyApiErrorResponse assemblyApiErrorResponse = (AssemblyApiErrorResponse) o;
+    return Objects.equals(this.error, assemblyApiErrorResponse.error) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveFormat, reportData);
+    return Objects.hash(error, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReportOptionsData {\n");
-    
-    sb.append("    saveFormat: ").append(toIndentedString(saveFormat)).append("\n");
-    sb.append("    reportData: ").append(toIndentedString(reportData)).append("\n");
+    sb.append("class AssemblyApiErrorResponse {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }
