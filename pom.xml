@@ -1,33 +1,41 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.groupdocs.assembly.cloud</groupId>
-    <artifactId>GroupDocsAssemblyCloud</artifactId>
+    <groupId>com.groupdocs</groupId>
+    <artifactId>groupdocs-assembly-cloud</artifactId>
     <packaging>jar</packaging>
     <name>GroupDocsAssemblyCloud</name>
-    <version>1.0.0</version>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
-    <description>Swagger Java</description>
+    <version>20.6.0</version>
+    <url>https://www.groupdocs.cloud</url>
+    <description>GroupDocs Assembly Cloud Java SDK</description>
     <scm>
-        <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-        <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-        <url>https://github.com/swagger-api/swagger-codegen</url>
+    
+        <connection>scm:git:https://WordsCloud:${env.gitPass}@github.com/groupdocs-assembly-cloud/groupdocs-assembly-cloud-java.git</connection>
+        <developerConnection>scm:git:https://WordsCloud:${env.gitPass}@github.com/groupdocs-assembly-cloud/groupdocs-assembly-cloud-java.git</developerConnection>
+        <url>https://github.com/groupdocs-assembly-cloud/groupdocs-assembly-cloud-java</url>
     </scm>
+    
+    <distributionManagement>
+        <repository>
+            <id>groupdocs</id>
+            <url>http://repository.groupdocs.cloud/repo/</url>
+        </repository>
+    </distributionManagement>
 
     <licenses>
         <license>
-            <name>Unlicense</name>
-            <url>http://unlicense.org</url>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
+            <name>Yaroslaw Ekimov</name>
+            <email>yaroslaw.ekimov@aspose.com</email>
+            <organization>Aspose</organization>
+            <organizationUrl>https://www.groupdocs.cloud</organizationUrl>
         </developer>
     </developers>
 
