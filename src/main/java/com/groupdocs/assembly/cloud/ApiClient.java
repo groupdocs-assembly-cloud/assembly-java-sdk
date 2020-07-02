@@ -1105,7 +1105,7 @@ public class ApiClient {
 
     /**
      * Request OAuth token
-     @throw ApiException If authorization is failed
+     @throws ApiException If authorization is failed
      */
     public void requestToken() throws ApiException {
         try {
