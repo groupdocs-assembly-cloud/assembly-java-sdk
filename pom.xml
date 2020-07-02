@@ -40,7 +40,7 @@
     </developers>
 
     <build>
-	<pluginManagement>
+    <pluginManagement>
             <plugins>
                 <plugin>
                     <artifactId>maven-source-plugin</artifactId>
@@ -184,7 +184,7 @@
                     </execution>
                 </executions>
             </plugin>
-			<plugin>		
+            <plugin>
                 <version>3.8.0</version>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
