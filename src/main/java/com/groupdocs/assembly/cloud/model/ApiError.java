@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose">
- *   Copyright (c) 2020 GroupDocs.Assembly for Cloud
+ *   Copyright (c) 2021 GroupDocs.Assembly for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -58,8 +58,8 @@ public class ApiError {
   @SerializedName("DateTime")
   private OffsetDateTime dateTime = null;
 
-  @SerializedName("InnerApiError")
-  private ApiError innerApiError = null;
+  @SerializedName("InnerError")
+  private ApiError innerError = null;
 
   public ApiError code(String code) {
     this.code = code;
@@ -133,22 +133,22 @@ public class ApiError {
     this.dateTime = dateTime;
   }
 
-  public ApiError innerApiError(ApiError innerApiError) {
-    this.innerApiError = innerApiError;
+  public ApiError innerError(ApiError innerError) {
+    this.innerError = innerError;
     return this;
   }
 
    /**
    * Gets or sets inner error.
-   * @return innerApiError
+   * @return innerError
   **/
   @ApiModelProperty(value = "Gets or sets inner error.")
-  public ApiError getInnerApiError() {
-    return innerApiError;
+  public ApiError getInnerError() {
+    return innerError;
   }
 
-  public void setInnerApiError(ApiError innerApiError) {
-    this.innerApiError = innerApiError;
+  public void setInnerError(ApiError innerError) {
+    this.innerError = innerError;
   }
 
 
@@ -165,12 +165,12 @@ public class ApiError {
         Objects.equals(this.message, apiError.message) &&
         Objects.equals(this.description, apiError.description) &&
         Objects.equals(this.dateTime, apiError.dateTime) &&
-        Objects.equals(this.innerApiError, apiError.innerApiError);
+        Objects.equals(this.innerError, apiError.innerError);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, message, description, dateTime, innerApiError);
+    return Objects.hash(code, message, description, dateTime, innerError);
   }
 
 
@@ -183,7 +183,7 @@ public class ApiError {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
-    sb.append("    innerApiError: ").append(toIndentedString(innerApiError)).append("\n");
+    sb.append("    innerError: ").append(toIndentedString(innerError)).append("\n");
     sb.append("}");
     return sb.toString();
   }
