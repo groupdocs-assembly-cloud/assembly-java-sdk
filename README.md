@@ -1,14 +1,14 @@
-# GroupDocsAssemblyCloud
+# GroupDocs.Assembly Cloud for Java
 This repository contains GroupDocs.Assembly Cloud SDK for Java source code. This SDK allows you to work with GroupDocs.Assembly Cloud REST APIs in your Java applications quickly and easily, with zero initial cost.
 
-See [API Reference](https://apireference.groupdocs.cloud/) for full API specification.
+See [API Reference](https://apireference.groupdocs.cloud/assembly) for full API specification.
 
 ## How to use the SDK?
-The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [Maven](https://mvnrepository.com/artifact/com.groupdocs/groupdocs-cloud-assembly) (recommended). For more details, please visit our [documentation website](https://docs.groupdocs.cloud/display/assemblycloud/Available+SDKs).
+The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [Maven](https://repository.groupdocs.cloud/webapp/#/artifacts/browse/tree/General/repo/com/groupdocs/groupdocs-assembly-cloud) (recommended).
 
 ### Prerequisites
 
-To use GroupDocs.Assembly for Cloud Java SDK you need to register an account with [GroupDocs Cloud](https://www.groupdocs.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.groupdocs.cloud/#/apps). There is free quota available. For more details, see [GroupDocs Cloud Pricing](https://purchase.groupdocs.cloud/pricing).
+To use GroupDocs.Assembly for Cloud Java SDK you need to register an account with [GroupDocs Cloud](https://www.groupdocs.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.groupdocs.cloud/applications). There is free quota available. For more details, see [GroupDocs Cloud Pricing](https://purchase.groupdocs.cloud/pricing).
 
 ## Requirements
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.groupdocs</groupId>
   <artifactId>GroupDocsAssemblyCloud</artifactId>
-  <version>1.0.0</version>
+  <version>21.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.groupdocs:GroupDocsAssemblyCloud:1.0.0"
+compile "com.groupdocs:GroupDocsAssemblyCloud:21.1.0"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/GroupDocsAssemblyCloud-1.0.0.jar`
+* `target/GroupDocsAssemblyCloud-21.1.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -85,14 +85,13 @@ public class AssemblyApiExample {
     public static void main(String[] args) {
         
         AssemblyApi apiInstance = new AssemblyApi();
-        String name = "name_example"; // String | File name of template, which is located on a storage
-        File data = new File("/path/to/file.txt"); // File | Report data in JSON or XML format
-        LoadSaveOptionsData saveOptions = new LoadSaveOptionsData(); // LoadSaveOptionsData | Save options in json format
-        saveOptions.setSaveFormat("docx");
-        String folder = "folder_example"; // String | Folder path where template file is located(on a storage)
-        String destFileName = "destFileName_example"; // String | Result name of built document
+        AssembleOptions saveOptions = new AssembleOptions();
+        saveOptions.setTemplateFileInfo(new TemplateFileInfo().filePath(Paths.get(pathtoFile).toString()));
+        saveOptions.setSaveFormat("pdf");
+        saveOptions.setReportData(new String(Files.readAllBytes(Paths.get(pathToData))));
         try {
-            File result = apiInstance.postAssembleDocument(name, data, saveOptions, folder, destFileName);
+            AssembleDocumentRequest request = new AssembleDocumentRequest(saveOptions);
+            File response = TestInitializer.assemblyApi.assembleDocument(request);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AssemblyApi#postAssembleDocument");
@@ -107,6 +106,4 @@ public class AssemblyApiExample {
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
 
 ## Contact Us
-Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/assembly).
-
-
+[Product Page](https://products.groupdocs.cloud/assembly/java) | [Documentation](https://docs.groupdocs.cloud/display/assemblycloud/Home) | [API Reference](https://apireference.groupdocs.cloud/assembly/) | [Code Samples](https://github.com/groupdocs-assembly-cloud/groupdocs-assembly-cloud-java) | [Blog](https://blog.groupdocs.cloud/category/assembly/) | [Free Support](https://forum.groupdocs.cloud/c/assembly) | [Free Trial](https://dashboard.groupdocs.cloud/applications)
