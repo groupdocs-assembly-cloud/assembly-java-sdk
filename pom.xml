@@ -5,7 +5,7 @@
     <artifactId>groupdocs-assembly-cloud</artifactId>
     <packaging>jar</packaging>
     <name>GroupDocsAssemblyCloud</name>
-    <version>20.6.0</version>
+    <version>21.1.0</version>
     <url>https://www.groupdocs.cloud</url>
     <description>GroupDocs Assembly Cloud Java SDK</description>
     <scm>
