@@ -33,28 +33,28 @@ import java.io.File;
  */
 public class AssembleDocumentRequest {
     /*
-     * Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+     * Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.             
      */
     private AssembleOptions AssembleOptions;
     
     /*
      * Initializes a new instance of the assembleDocumentRequest class.
      *  
-     * @param AssembleOptions assembleOptions Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+     * @param AssembleOptions assembleOptions Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.             
      */
     public AssembleDocumentRequest(AssembleOptions assembleOptions) {
         AssembleOptions = assembleOptions;
     }
 
     /*
-     *  Gets Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+     *  Gets Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.             
      */
     public AssembleOptions getAssembleOptions() {
         return AssembleOptions;
     }
 
     /*
-     * Sets Assemble Options. It should be JSON with TemplateName, SaveFormat, ReportData and etc.             
+     * Sets Assemble Options. It should be JSON or XML with TemplateFileInfo, SaveFormat, ReportData and etc.             
      */
     public void setAssembleOptions(AssembleOptions value) {
         AssembleOptions = value;
